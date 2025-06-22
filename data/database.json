@@ -1,5 +1,20 @@
 {
   "chemistry": {},
   "biology": {},
-  "physics": {}
+  "physics": {
+    "fd404957": {
+      "name": "Inhaler ni Lebron",
+      "quantity": "3",
+      "manufacturer": "Buston Silteks",
+      "model_number": "1004",
+      "serial_number": "7999403",
+      "location": "Palawan",
+      "calibration_due": "12-01-2023",
+      "last_calibration": "12-04-2025",
+      "condition": "Good",
+      "current_user": "Lyka Nurjan Hamid",
+      "usage_log": "Yes sir",
+      "notes": "N/A"
+    }
+  }
 }

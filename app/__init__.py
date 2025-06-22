@@ -1,4 +1,5 @@
 from flask import Flask
+from datetime import datetime
 from config import Config
 
 def create_app():
@@ -13,5 +14,10 @@ def create_app():
     # Register blueprints/routes
     from . import routes
     app.register_blueprint(routes.bp)
+    
+    # Add context processor to inject current datetime
+    @app.context_processor
+    def inject_now():
+        return {'now': datetime.utcnow()}
     
     return app
