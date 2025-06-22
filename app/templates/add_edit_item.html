@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">
+                    {% if item_id %}Edit{% else %}Add{% endif %} Item - {{ lab_name|capitalize }} Lab
+                </h3>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% for field in fields %}
+                    <div class="mb-3">
+                        <label for="{{ field }}" class="form-label">
+                            {{ field.replace('_', ' ')|title }}
+                        </label>
+                        <input type="text" class="form-control" id="{{ field }}" name="{{ field }}"
+                               value="{{ item[field] if item else '' }}">
+                    </div>
+                    {% endfor %}
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a href="{{ url_for('main.lab_inventory', lab_name=lab_name) }}" 
+                           class="btn btn-secondary me-md-2">
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            {% if item_id %}Update{% else %}Add{% endif %} Item
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

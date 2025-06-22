@@ -1,8 +1,8 @@
 import json
 import os
-from pathlib import Path
 import uuid
 import threading
+from pathlib import Path
 
 class StorageManager:
     def __init__(self, file_path):
@@ -36,7 +36,7 @@ class StorageManager:
     def get_collection(self, collection_name):
         """Get a specific collection or None if not exists"""
         data = self.read_data()
-        return data.get(collection_name)
+        return data.get(collection_name, {})
     
     def update_collection(self, collection_name, collection_data):
         """Update a specific collection"""
@@ -67,14 +67,38 @@ class StorageManager:
             return True
         return False
     
-    def search_items(self, collection_name, field, value):
-        """Search items in a collection by field value"""
+    def get_lab_fields(self, lab_name):
+        """Get field names for a specific lab"""
+        fields = {
+            "chemistry": [
+                "name", "quantity", "supplier_name", "supplier_address", 
+                "supplier_phone", "cas_number", "signal_word", "hazards", 
+                "pictogram", "precautionary_statements", "supplemental_info",
+                "distributor_name", "distributor_phone", "date_purchased",
+                "date_opened", "expiration_date"
+            ],
+            "biology": [
+                "name", "quantity", "storage_conditions", "biohazard_level", 
+                "supplier_name", "supplier_contact", "catalog_number", 
+                "expiration_date", "date_received", "date_opened", 
+                "last_used", "used_by", "disposal_method", "notes"
+            ],
+            "physics": [
+                "name", "quantity", "manufacturer", "model_number", 
+                "serial_number", "location", "calibration_due", 
+                "last_calibration", "condition", "current_user", 
+                "usage_log", "notes"
+            ]
+        }
+        return fields.get(lab_name, [])
+    
+    def init_lab_schemas(self):
+        """Initialize lab schemas if they don't exist"""
+        labs = ["physics", "chemistry", "biology"]
         data = self.read_data()
-        collection = data.get(collection_name, {})
-        results = {}
         
-        for item_id, item in collection.items():
-            if field in item and str(item[field]).lower() == str(value).lower():
-                results[item_id] = item
+        for lab in labs:
+            if lab not in data:
+                data[lab] = {}
         
-        return results
+        self.write_data(data)

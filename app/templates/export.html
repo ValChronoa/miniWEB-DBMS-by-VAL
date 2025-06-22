@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Export {{ lab_name|capitalize }} Lab Data</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Export Format</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="format" id="formatCsv" value="csv" checked>
+                            <label class="form-check-label" for="formatCsv">
+                                CSV (Comma Separated Values)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="format" id="formatJson" value="json">
+                            <label class="form-check-label" for="formatJson">
+                                JSON (JavaScript Object Notation)
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a href="{{ url_for('main.lab_inventory', lab_name=lab_name) }}" 
+                           class="btn btn-secondary me-md-2">
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            Export Data
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

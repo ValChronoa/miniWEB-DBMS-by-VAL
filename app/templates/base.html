@@ -10,23 +10,20 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('index') }}">Lab Inventory System</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">Lab Inventory System</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                        <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="labsDropdown" role="button" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="labsDropdown" data-bs-toggle="dropdown">
                             Labs
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ url_for('lab_inventory', lab_name='physics') }}">Physics Lab</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('lab_inventory', lab_name='chemistry') }}">Chemistry Lab</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('lab_inventory', lab_name='biology') }}">Biology Lab</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.lab_inventory', lab_name='physics') }}">Physics</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.lab_inventory', lab_name='chemistry') }}">Chemistry</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.lab_inventory', lab_name='biology') }}">Biology</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -38,7 +35,7 @@
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
-                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <div class="alert alert-{{ category }} alert-dismissible fade show">
                         {{ message }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
@@ -51,11 +48,10 @@
 
     <footer class="bg-light text-center py-3 mt-5">
         <div class="container">
-            <p class="mb-0">Laboratory Inventory Management System &copy; {{ now.year }}</p>
+            <p class="mb-0">Lab Inventory System &copy; {{ now.year }}</p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>

@@ -1,0 +1,31 @@
+body {
+    background-color: #f8f9fa;
+    padding-bottom: 60px;
+}
+
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    font-weight: 500;
+}
+
+.table th {
+    background-color: #e9ecef;
+}
+
+.badge {
+    font-weight: normal;
+}
+
+.alert {
+    margin-top: 20px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
