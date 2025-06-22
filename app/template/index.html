@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h1 class="mb-4">Laboratory Inventory System</h1>
+        <p class="lead">Manage inventory for physics, chemistry, and biology laboratories</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    {% for lab in labs %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ lab|capitalize }} Lab</h5>
+                <p class="card-text">{{ lab_stats[lab] }} items in inventory</p>
+                <a href="{{ url_for('lab_inventory', lab_name=lab) }}" class="btn btn-primary">
+                    View Inventory
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="row mt-5">
+    <div class="col">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">System Status</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        Physics Lab: 
+                        <span class="badge bg-success">Operational</span>
+                    </li>
+                    <li class="list-group-item">
+                        Chemistry Lab: 
+                        <span class="badge bg-success">Operational</span>
+                    </li>
+                    <li class="list-group-item">
+                        Biology Lab: 
+                        <span class="badge bg-success">Operational</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
