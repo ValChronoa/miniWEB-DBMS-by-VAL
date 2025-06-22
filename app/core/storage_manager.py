@@ -5,7 +5,7 @@ import uuid
 import threading
 
 class StorageManager:
-    def __init__(self, file_path='data/database.json'):
+    def __init__(self, file_path):
         self.file_path = Path(file_path)
         self.lock = threading.Lock()
         self._ensure_structure()
